@@ -2,12 +2,11 @@ use std::borrow::Borrow;
 use std::hash::Hash;
 use std::ops::Deref;
 
-
 /// A generic Map trait
 ///
 /// # Examples
 ///
-/// This is a toy example of a map which reexposes and inner map and stores the
+/// This is a toy example of a map which reexposes an inner map and stores the
 /// most recent key and value to be inserted. Because the LastInsertMap implements
 /// Map, it can be seamlessly used as a replacement for other maps.
 /// ```
@@ -61,6 +60,7 @@ use std::ops::Deref;
 ///         self.inner_map.get(k)
 ///     }
 ///
+///     #[inline]
 ///     fn insert(&mut self, k: K, v: V) -> Option<V> {
 ///         self.last_key = k;
 ///         self.last_value = v;
@@ -69,13 +69,12 @@ use std::ops::Deref;
 /// }
 ///
 /// # fn main() {
-///     let map = HashMap::new();
-///     let mut foo = LastInsertMap::new(map, 0, 1);
-///     assert_eq!(foo.get_last_insert(), (&0, &1));
-///     assert_eq!(foo.get(&0), Some(&1));
-///     assert_eq!(foo.insert(1, 2), None);
-///     assert_eq!(foo.get(&1), Some(&2));
-///     assert_eq!(foo.get_last_insert(), (&1, &2));
+///     let mut map = LastInsertMap::new(HashMap::new(), 0, 1);
+///     assert_eq!(map.get_last_insert(), (&0, &1));
+///     assert_eq!(map.get(&0), Some(&1));
+///     assert_eq!(map.insert(1, 2), None);
+///     assert_eq!(map.get(&1), Some(&2));
+///     assert_eq!(map.get_last_insert(), (&1, &2));
 /// # }
 /// ```
 pub trait Map<'m, K, V: 'm> {
@@ -146,6 +145,7 @@ mod tests {
     {
         assert_eq!(map.get(&k).unwrap().clone(), v);
     }
+
     fn assert_map_insert<'m, K, V>(map: &mut impl Map<'m, K, V>, k: K, v: V, o: Option<V>)
     where
         K: Hash + Eq,
