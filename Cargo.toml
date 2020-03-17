@@ -1,6 +1,6 @@
 [package]
 name = "map-trait"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Colin Moore <colin@moore.one>"]
 edition = "2018"
 
@@ -17,3 +17,6 @@ categories = []
 license = "MIT OR Apache-2.0"
 
 [dependencies]
+
+[[example]]
+name = "last_insert_map"

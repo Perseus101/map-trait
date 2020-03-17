@@ -1,9 +1,9 @@
 #![allow(incomplete_features)]
-#![feature(generic_associated_types, associated_type_defaults)]
+#![feature(generic_associated_types)]
 
 use std::borrow::Borrow;
-use std::ops::Deref;
 use std::hash::Hash;
+use std::ops::Deref;
 
 pub trait MapGuard<'a, T>: Deref<Target = T> + std::marker::Sized {}
 
