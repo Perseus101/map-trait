@@ -17,6 +17,3 @@ categories = []
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-
-[[example]]
-name = "last_insert_map"
