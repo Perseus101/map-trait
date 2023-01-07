@@ -1,5 +1,5 @@
 # Map Trait
-A trait for a generic Map
+A trait for a generic Map. This is a fork from [Perseus101/map-trait](https://github.com/Perseus101/map-trait)
 
 ## License
 
