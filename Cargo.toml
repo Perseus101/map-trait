@@ -6,8 +6,6 @@ edition = "2018"
 
 description = "Generic Map trait"
 
-repository = "https://github.com/Perseus101/map-trait"
-
 readme = "README.md"
 
 keywords = ["map", "data-structure", "generic", "containers"]
