@@ -9,8 +9,6 @@ use std::hash::Hash;
 /// most recent value to be inserted. Because the LastInsertSet implements
 /// Set, it can be seamlessly used as a replacement for other sets.
 /// ```
-/// #![allow(incomplete_features)]
-/// #![feature(generic_associated_types)]
 /// use std::borrow::Borrow;
 /// use std::hash::Hash;
 /// use std::collections::HashSet;
@@ -86,12 +84,11 @@ where
     T: Hash + Eq,
     S: std::hash::BuildHasher,
 {
-
     #[inline]
     fn contains<Q: ?Sized>(&self, value: &Q) -> bool
     where
         T: Borrow<Q>,
-        Q: Hash + Eq + Ord
+        Q: Hash + Eq + Ord,
     {
         std::collections::HashSet::contains(self, value)
     }
@@ -106,12 +103,11 @@ impl<T> Set<T> for std::collections::BTreeSet<T>
 where
     T: Ord,
 {
-
     #[inline]
     fn contains<Q: ?Sized>(&self, value: &Q) -> bool
     where
         T: Borrow<Q>,
-        Q: Hash + Eq + Ord
+        Q: Hash + Eq + Ord,
     {
         std::collections::BTreeSet::contains(self, value)
     }

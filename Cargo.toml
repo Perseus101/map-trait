@@ -1,12 +1,10 @@
 [package]
 name = "map-trait"
-version = "0.3.1"
+version = "0.3.2"
 authors = ["Colin Moore <colin@moore.one>"]
 edition = "2018"
 
 description = "Generic Map trait"
-
-repository = "https://github.com/Perseus101/map-trait"
 
 readme = "README.md"
 

@@ -10,8 +10,6 @@ use std::ops::Deref;
 /// most recent key and value to be inserted. Because the LastInsertMap implements
 /// Map, it can be seamlessly used as a replacement for other maps.
 /// ```
-/// #![allow(incomplete_features)]
-/// #![feature(generic_associated_types)]
 /// use std::borrow::Borrow;
 /// use std::hash::Hash;
 /// use std::collections::HashMap;
@@ -49,7 +47,7 @@ use std::ops::Deref;
 ///     V: 'm + Copy,
 ///     M: Map<'m, K, V>,
 /// {
-///     type GetGuard<'a> where 'm: 'a = M::GetGuard<'a>;
+///     type GetGuard<'a> = M::GetGuard<'a> where Self: 'a;
 ///
 ///     #[inline]
 ///     fn get<'a, Q: ?Sized>(&'a self, k: &Q) -> Option<Self::GetGuard<'a>>
@@ -78,7 +76,9 @@ use std::ops::Deref;
 /// # }
 /// ```
 pub trait Map<'m, K, V: 'm> {
-    type GetGuard<'a>: Deref<Target = V> where 'm: 'a;
+    type GetGuard<'a>: Deref<Target = V>
+    where
+        Self: 'a;
 
     fn get<'a, Q: ?Sized>(&'a self, k: &Q) -> Option<Self::GetGuard<'a>>
     where
@@ -93,7 +93,7 @@ where
     V: 'm,
     S: std::hash::BuildHasher,
 {
-    type GetGuard<'a> where 'm: 'a = &'a V;
+    type GetGuard<'a> = &'a V where Self: 'a;
 
     #[inline]
     fn get<'a, Q: ?Sized>(&'a self, k: &Q) -> Option<Self::GetGuard<'a>>
@@ -115,7 +115,7 @@ where
     K: Ord,
     V: 'm,
 {
-    type GetGuard<'a> where 'm: 'a = &'a V;
+    type GetGuard<'a> = &'a V where Self: 'a;
 
     #[inline]
     fn get<'a, Q: ?Sized>(&'a self, k: &Q) -> Option<Self::GetGuard<'a>>
