@@ -17,3 +17,8 @@ categories = []
 license = "MIT OR Apache-2.0"
 
 [dependencies]
+
+[features]
+default = ["async"]
+
+async = []
